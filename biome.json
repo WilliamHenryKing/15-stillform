@@ -6,12 +6,7 @@
     "useIgnoreFile": true
   },
   "files": {
-    "includes": [
-      "**",
-      "!**/bun.lock",
-      "!**/docs/visual/captures",
-      "!**/public"
-    ]
+    "includes": ["**", "!**/bun.lock", "!**/docs/visual/captures", "!**/public"]
   },
   "formatter": {
     "indentStyle": "space",

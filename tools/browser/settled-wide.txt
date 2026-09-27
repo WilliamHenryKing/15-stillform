@@ -1,0 +1,8 @@
+async (page) => {
+  await page.setViewportSize({width:1920,height:1080});
+  await page.emulateMedia({reducedMotion:'no-preference'});
+  await page.goto('http://127.0.0.1:4625/');
+  await page.waitForTimeout(2500);
+  await page.screenshot({path:'docs/visual/captures/review-2026-09-27/hero-1920x1080-settled.png',scale:'css'});
+  return {captionOpacity:await page.locator('.hero-caption h2').evaluate(el=>getComputedStyle(el).opacity),overflow:await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth),note:'The earlier 1920 capture sampled a replayed intro after switching motion on. This capture waits for it to settle.'};
+}

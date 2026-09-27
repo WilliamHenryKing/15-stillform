@@ -1,0 +1,75 @@
+{
+  "schemaVersion": 1,
+  "assets": [
+    {
+      "id": "courtyard",
+      "author": "John Fornander",
+      "source": "https://unsplash.com/photos/white-concrete-building-with-swimming-pool-y3_AHHrxUBY",
+      "download": "https://images.unsplash.com/photo-1613977257365-aaae5a9817ff?auto=format&fit=max&w=1920&q=85&fm=webp",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "retrieved": "2026-09-27",
+      "representation": "Selected-resolution CDN WebP; not an archival full-resolution original",
+      "processing": "Unsplash CDN width limit and WebP q85; browser crop/colour styling only",
+      "output": "public/images/courtyard.webp",
+      "bytes": 526486,
+      "sha256": "5b1ddf44ea85bad0d71fc3182b52e55b0b88b0cc3443c55d3252fe92d0c28294"
+    },
+    {
+      "id": "stair",
+      "author": "Jorgen Hendriksen",
+      "source": "https://unsplash.com/photos/a-wooden-spiral-staircase-with-a-skylight-in-the-background-hCBjuXFjMIM",
+      "download": "https://images.unsplash.com/photo-1672929280680-1afde30f94b8?auto=format&fit=max&w=1400&q=85&fm=webp",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "retrieved": "2026-09-27",
+      "representation": "Selected-resolution CDN WebP; not an archival full-resolution original",
+      "processing": "Unsplash CDN width limit and WebP q85; browser crop/colour styling only",
+      "output": "public/images/stair.webp",
+      "bytes": 229584,
+      "sha256": "f73c8479507d594ee91ef1f54b8ab5e1e34160234e7d05baef49e0b2451b3119"
+    },
+    {
+      "id": "stair-wide",
+      "author": "Jorgen Hendriksen",
+      "source": "https://unsplash.com/photos/a-wooden-spiral-staircase-with-a-skylight-in-the-background-hCBjuXFjMIM",
+      "download": "https://images.unsplash.com/photo-1672929280680-1afde30f94b8?auto=format&fit=max&w=2200&q=85&fm=webp",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "retrieved": "2026-09-27",
+      "representation": "Selected-resolution CDN WebP; not an archival full-resolution original",
+      "processing": "Unsplash CDN width limit and WebP q85; browser crop/colour styling only",
+      "output": "public/images/stair-wide.webp",
+      "bytes": 591976,
+      "sha256": "20f70fccbc1978cadc1e4f691db14d914ccfcfea22409b9f559813e6bc900a84"
+    },
+    {
+      "id": "timber",
+      "author": "Norbert Kowalczyk",
+      "source": "https://unsplash.com/photos/modern-building-facade-with-vertical-wooden-slats-oGS75Xk28HA",
+      "download": "https://images.unsplash.com/photo-1764869024302-a344a7046be6?auto=format&fit=max&w=1400&q=85&fm=webp",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "retrieved": "2026-09-27",
+      "representation": "Selected-resolution CDN WebP; not an archival full-resolution original",
+      "processing": "Unsplash CDN width limit and WebP q85; browser crop/colour styling only",
+      "output": "public/images/timber.webp",
+      "bytes": 279056,
+      "sha256": "1becbd9885777c1da5b020aec8e85afdf95730d24ed4494d13ffc80005d132a1"
+    },
+    {
+      "id": "gallery",
+      "author": "Fer Troulik",
+      "source": "https://unsplash.com/photos/empty-room-with-large-windows-and-wooden-bench-F985EJTGrxA",
+      "download": "https://images.unsplash.com/photo-1777987956542-1edd0c7488d9?auto=format&fit=max&w=1600&q=85&fm=webp",
+      "license": "Unsplash License",
+      "licenseUrl": "https://unsplash.com/license",
+      "retrieved": "2026-09-27",
+      "representation": "Selected-resolution CDN WebP; not an archival full-resolution original",
+      "processing": "Unsplash CDN width limit and WebP q85; browser crop/colour styling only",
+      "output": "public/images/gallery.webp",
+      "bytes": 570922,
+      "sha256": "78aed07c54724f18b7847be19973d4d2a2a68cbf06acf7b9958ed27158d84f40"
+    }
+  ]
+}

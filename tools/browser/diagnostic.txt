@@ -1,0 +1,10 @@
+async (page) => {
+  await page.goto('about:blank');
+  await page.goto('http://127.0.0.1:4625/');
+  await page.waitForTimeout(600);
+  await page.keyboard.press('Tab');
+  const focus = await page.evaluate(()=>({tag:document.activeElement.tagName,text:document.activeElement.textContent}));
+  await page.addScriptTag({path:'C:/Users/William King/AppData/Local/npm-cache/_npx/0f94ee7615faf582/node_modules/axe-core/axe.min.js'});
+  const accessibility = await page.evaluate(async () => { const r = await axe.run(document,{runOnly:{type:'tag',values:['wcag2a','wcag2aa','wcag21aa']}}); return r.violations.map(v => ({id:v.id,impact:v.impact,nodes:v.nodes.map(n => ({target:n.target,summary:n.failureSummary}))})); });
+  return {focus,accessibility};
+}

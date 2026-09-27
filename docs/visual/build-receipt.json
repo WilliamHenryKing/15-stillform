@@ -1,0 +1,56 @@
+{
+  "date": "2026-09-27",
+  "files": [
+    {
+      "path": "dist/.vite/manifest.json",
+      "bytes": 185,
+      "sha256": "81a5a8108cb75ba6ebe79e0e5a57026222f291e5b43e166c52d8b51667041ba5"
+    },
+    {
+      "path": "dist/assets/index-DH40GxJI.js",
+      "bytes": 394077,
+      "sha256": "f46629f7eb2031f4d3bcb49c2e4cb81b949ab7805f44e7760be16f1d910e008b"
+    },
+    {
+      "path": "dist/assets/index-DSiSGU8z.css",
+      "bytes": 33199,
+      "sha256": "4f8e07051fe1b7e8b98a2e783e4eddbc54b60f3bc848dabf6312228860f4c0e9"
+    },
+    {
+      "path": "dist/favicon.svg",
+      "bytes": 261,
+      "sha256": "28b93d7bdce9fcc9e28360e1a0d177e0d35d8f59aef3760136df6c1af970024f"
+    },
+    {
+      "path": "dist/images/courtyard.webp",
+      "bytes": 526486,
+      "sha256": "5b1ddf44ea85bad0d71fc3182b52e55b0b88b0cc3443c55d3252fe92d0c28294"
+    },
+    {
+      "path": "dist/images/gallery.webp",
+      "bytes": 570922,
+      "sha256": "78aed07c54724f18b7847be19973d4d2a2a68cbf06acf7b9958ed27158d84f40"
+    },
+    {
+      "path": "dist/images/stair-wide.webp",
+      "bytes": 591976,
+      "sha256": "20f70fccbc1978cadc1e4f691db14d914ccfcfea22409b9f559813e6bc900a84"
+    },
+    {
+      "path": "dist/images/stair.webp",
+      "bytes": 229584,
+      "sha256": "f73c8479507d594ee91ef1f54b8ab5e1e34160234e7d05baef49e0b2451b3119"
+    },
+    {
+      "path": "dist/images/timber.webp",
+      "bytes": 279056,
+      "sha256": "1becbd9885777c1da5b020aec8e85afdf95730d24ed4494d13ffc80005d132a1"
+    },
+    {
+      "path": "dist/index.html",
+      "bytes": 16396,
+      "sha256": "5c11803776193e1c9d50769998588a02139d6eb3c2db1b5b477c7a3c07dbf892"
+    }
+  ],
+  "totalBytes": null
+}
