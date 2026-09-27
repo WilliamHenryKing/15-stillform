@@ -1,0 +1,9 @@
+node_modules/
+dist/
+.vite/
+.env*
+output/
+.playwright-cli/
+*.log
+*.tsbuildinfo
+assets-src/
