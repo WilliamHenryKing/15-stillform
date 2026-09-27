@@ -9,8 +9,9 @@ From this folder, `bun install --frozen-lockfile --ignore-scripts`, then `bun ru
 ## Explore
 
 - Filter four fictional design studies; open a study, change its crop, move with arrows and close with Escape.
-- Scroll through the material and process sections, with SplitText masks, image apertures, parallax and a changing process index.
-- Choose a project type, scale, timing and one to three priorities. Review, edit and download a local text brief. No data is submitted or stored remotely.
+- Explore texture, light and form in the interactive material index, then follow a DrawSVG architectural plan and moving daylight through the process section.
+- Browse gallery thumbnails, zoom into real detail and use the persistent header/reading rule to move through the page.
+- Choose a project type, scale, timing and one to three priorities, with visible completion feedback. Review, edit and download a local text brief. No data is submitted or stored remotely.
 - Use the mobile menu, keyboard focus path, footer motion switch and photo credits. OS reduced motion is respected.
 
 The practice and studies are fictional. The real photographs are credited and the site does not claim authorship of the buildings. See [CREDITS.md](CREDITS.md) and [assets.manifest.json](assets.manifest.json).
@@ -20,3 +21,5 @@ The practice and studies are fictional. The real photographs are credited and th
 [DESIGN.md](DESIGN.md), [visual verification](docs/visual/VERIFICATION.md) and [self-scorecard](docs/visual/SCORECARD.md) record the design, checks and limitations. Repeatable Playwright CLI snippets are under `tools/browser/`; captures and results are under `docs/visual/captures/review-2026-09-27/`. The source/asset build hashes are in `docs/visual/build-receipt.json`.
 
 Local implementation and solo review are complete; independent review, physical-device performance and William's visual acceptance are unclaimed. Nothing is deployed. This repository is independent of the other fourteen projects. Keep its `.repositories/15-stillform` anchor in place.
+
+The second deep refinement pass is recorded in `docs/visual/captures/refinement-2026-09-27/`. First-delivery evidence remains intact.

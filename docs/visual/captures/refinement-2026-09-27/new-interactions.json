@@ -1,0 +1,22 @@
+{
+  "checks": [
+    "Header stays available through the long page",
+    "Reading rule reflects scroll progress",
+    "Light selector updates the material narrative",
+    "Light selector shows the matching local reference",
+    "Material note opens its matching study",
+    "Gallery thumbnails jump directly to a study",
+    "Gallery selected thumbnail is announced",
+    "Material study restores its opener focus",
+    "Architectural strokes are controlled by DrawSVG",
+    "Plan emphasis follows the final design chapter",
+    "New brief starts with accurate completion feedback",
+    "All four choices complete the brief progress",
+    "Material selection works at phone width",
+    "New material and drawing layouts fit phone width",
+    "Reduced motion restores complete unanimated drawing",
+    "No browser errors in new interactions"
+  ],
+  "errors": [],
+  "scope": "Actual interaction and sampled states; not uninterrupted viewing."
+}

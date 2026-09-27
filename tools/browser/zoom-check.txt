@@ -1,0 +1,28 @@
+async (page) => {
+  await page.emulateMedia({reducedMotion:'no-preference'});
+  await page.setViewportSize({width:1440,height:1000});
+  await page.goto('http://127.0.0.1:4625/'); await page.waitForTimeout(2500);
+  await page.getByRole('button',{name:'View A slower summer',exact:true}).click(); await page.waitForTimeout(1300);
+  const before=await page.locator('.study-photo img').boundingBox();
+  await page.getByRole('button',{name:'Look closer +',exact:true}).click(); await page.waitForTimeout(1300);
+  const after=await page.locator('.study-photo img').boundingBox();
+  const ratio=after.width/before.width;
+  if (Math.abs(ratio-1.6)>0.01) throw Error('Detail zoom does not enlarge the actual image');
+  await page.screenshot({path:'docs/visual/captures/refinement-2026-09-27/gallery-zoom.png'});
+  await page.keyboard.press('ArrowRight'); await page.waitForTimeout(1100);
+  const reset=await page.locator('.study-photo img').evaluate(el=>getComputedStyle(el).transform);
+  if (reset!=='none' && reset!=='matrix(1, 0, 0, 1, 0, 0)') throw Error('Next study retained zoom');
+  await page.keyboard.press('Escape'); await page.emulateMedia({reducedMotion:'reduce'});
+  await page.setViewportSize({width:390,height:844});
+  await page.getByRole('button',{name:'View A slower summer',exact:true}).click();
+  await page.getByRole('button',{name:'Open study 04: Between the lines',exact:true}).click();
+  await page.waitForTimeout(100);
+  const galleryReturnsToTop=await page.locator('.study-dialog').evaluate(el=>el.scrollTop===0);
+  if (!galleryReturnsToTop) throw Error('Phone gallery did not return to the new image');
+  const staticBefore=await page.locator('.study-photo img').boundingBox();
+  await page.getByRole('button',{name:'Look closer +',exact:true}).click();
+  const staticAfter=await page.locator('.study-photo img').boundingBox();
+  const staticRatio=staticAfter.width/staticBefore.width;
+  if (Math.abs(staticRatio-1.6)>0.01) throw Error('Static phone crop failed');
+  return {checks:['Actual animated image reaches 1.6x zoom','Changing study resets actual crop','Phone gallery returns to new image','Reduced-motion phone zoom works'],before,after,ratio,staticRatio,galleryReturnsToTop};
+}

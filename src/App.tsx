@@ -70,15 +70,18 @@ function ProjectDialog({
   const dialog = useDialog(close);
   useGSAP(
     () => {
-      if (motion)
-        gsap.from(".study-photo img", {
-          opacity: 0,
-          scale: 1.03,
-          duration: 0.65,
-          ease: "power2.out",
-        });
+      dialog.ref.current?.scrollTo({ top: 0, behavior: "instant" });
+      if (!motion) return;
+      gsap
+        .timeline({ defaults: { ease: "power3.out" } })
+        .from(".study-photo-reveal", { clipPath: "inset(0 100% 0 0)", scale: 1.08, duration: 0.85 })
+        .from(
+          ".study-content > :not(.study-pagination)",
+          { y: 14, opacity: 0, duration: 0.6, stagger: 0.035 },
+          0.12,
+        );
     },
-    { scope: dialog.ref, dependencies: [project.id], revertOnUpdate: true },
+    { scope: dialog.ref, dependencies: [project.id, motion], revertOnUpdate: true },
   );
   function change(offset: number) {
     setProject(nextProject(project.id, offset));
@@ -108,13 +111,15 @@ function ProjectDialog({
       </div>
       <div className="study-layout">
         <div className={`study-photo ${detail ? "detail-view" : ""}`}>
-          <img
-            src={project.image}
-            alt={project.alt}
-            style={{ objectPosition: project.position }}
-            width="1400"
-            height="1400"
-          />
+          <div className="study-photo-reveal">
+            <img
+              src={project.image}
+              alt={project.alt}
+              style={{ objectPosition: project.position }}
+              width="1400"
+              height="1400"
+            />
+          </div>
           <button
             type="button"
             className="detail-toggle"
@@ -126,7 +131,9 @@ function ProjectDialog({
         </div>
         <div className="study-content">
           <span className="eyebrow">{project.category.toUpperCase()} / CONCEPT STUDY</span>
-          <h2 id="study-title">{project.title}</h2>
+          <h2 id="study-title" aria-live="polite">
+            {project.title}
+          </h2>
           <p className="study-deck">{project.description}</p>
           <div className="study-rule" />
           <h3>{project.idea}</h3>
@@ -157,6 +164,23 @@ function ProjectDialog({
               <Arrow direction="right" />
             </button>
           </div>
+          <fieldset className="study-thumbnails" aria-label="Choose a study">
+            {PROJECTS.map((item) => (
+              <button
+                type="button"
+                key={item.id}
+                aria-label={`Open study ${item.number}: ${item.title}`}
+                aria-pressed={item.id === project.id}
+                onClick={() => {
+                  setProject(item);
+                  setDetail(false);
+                }}
+              >
+                <img src={item.image} alt="" width="120" height="90" loading="lazy" />
+                <span>{item.number}</span>
+              </button>
+            ))}
+          </fieldset>
         </div>
       </div>
     </dialog>
@@ -267,6 +291,112 @@ function Projects({ motion, open }: { motion: boolean; open: (project: Project) 
   );
 }
 
+const materialNotes = [
+  {
+    label: "Texture",
+    title: "The warmth of timber.",
+    project: PROJECTS[3],
+    note: "Close enough to see the grain. Deep enough to catch a shadow. A simple rhythm becomes something you want to reach out and touch.",
+  },
+  {
+    label: "Light",
+    title: "Let the light do the work.",
+    project: PROJECTS[2],
+    note: "A quiet surface becomes a canvas for the day. Light brings depth, changes the mood and reminds us that a room is never quite still.",
+  },
+  {
+    label: "Form",
+    title: "An everyday kind of poetry.",
+    project: PROJECTS[1],
+    note: "A line that turns. A proportion that feels right. Thoughtful geometry gives an ordinary journey a little sense of occasion.",
+  },
+] as const;
+
+function Materials({ motion, open }: { motion: boolean; open: (project: Project) => void }) {
+  const [selected, setSelected] = useState(0);
+  const root = useRef<HTMLElement>(null);
+  const note = materialNotes[selected] ?? materialNotes[0];
+  useGSAP(
+    () => {
+      if (!motion) return;
+      gsap
+        .timeline({ defaults: { ease: "power3.out" } })
+        .from(".material-photo-layer", { clipPath: "inset(0 100% 0 0)", duration: 0.85 })
+        .from(".material-photo-layer img", { scale: 1.12, duration: 1.15 }, 0)
+        .from(".material-note > *", { y: 14, opacity: 0, stagger: 0.06, duration: 0.55 }, 0.1);
+    },
+    { scope: root, dependencies: [selected, motion], revertOnUpdate: true },
+  );
+  return (
+    <section
+      className="materials section-pad"
+      id="materials"
+      ref={root}
+      aria-labelledby="materials-heading"
+    >
+      <div className="materials-visual">
+        <div className="materials-image reveal-image">
+          <div className="material-photo-layer" key={note.label}>
+            <img
+              src={note.project.image}
+              alt={note.project.alt}
+              width="1400"
+              height="1600"
+              loading="lazy"
+              style={{ objectPosition: note.project.position }}
+            />
+          </div>
+          <span className="material-ruler" aria-hidden="true" />
+          <span className="material-number" aria-hidden="true">
+            0{selected + 1}
+          </span>
+          <span className="material-image-label">A STUDY IN {note.label.toUpperCase()}</span>
+        </div>
+        <div className="material-photo-caption">
+          <span>{note.project.title}</span>
+          <span>STUDY {note.project.number} ↗</span>
+        </div>
+      </div>
+      <div className="materials-copy">
+        <span className="eyebrow">IN THE DETAILS / THREE WAYS OF SEEING</span>
+        <h2 id="materials-heading" className="line-reveal">
+          Honest materials.
+          <br />
+          <em>Nothing to hide.</em>
+        </h2>
+        <p>The smallest things make the deepest impression. Take a closer look.</p>
+        <fieldset className="material-choices" aria-label="Explore material notes">
+          {materialNotes.map((item, index) => (
+            <button
+              key={item.label}
+              type="button"
+              aria-pressed={selected === index}
+              aria-controls="material-note"
+              onClick={() => setSelected(index)}
+            >
+              <span className={`material-swatch swatch-${index}`} aria-hidden="true" />
+              <span>{item.label}</span>
+              <span className="material-choice-index">0{index + 1}</span>
+            </button>
+          ))}
+        </fieldset>
+        <div className="material-note" id="material-note" role="status" aria-atomic="true">
+          <h3>{note.title}</h3>
+          <p>{note.note}</p>
+        </div>
+        <button type="button" className="text-link" onClick={() => open(note.project)}>
+          Explore this study <Arrow />
+        </button>
+        <span className="material-stamp">
+          TO BE LIVED WITH. TO BE NOTICED.
+          <br />
+          TEXTURE / LIGHT / FORM
+        </span>
+      </div>
+    </section>
+  );
+}
+
 const steps = [
   {
     number: "01",
@@ -287,7 +417,7 @@ const steps = [
     note: "PURPOSE IN EVERY DETAIL",
   },
 ];
-function Approach() {
+function Approach({ motion }: { motion: boolean }) {
   const [active, setActive] = useState(0);
   const root = useRef<HTMLElement>(null);
   useGSAP(
@@ -302,6 +432,29 @@ function Approach() {
         });
     },
     { scope: root },
+  );
+  useGSAP(
+    () => {
+      if (!motion) return;
+      gsap.from(".plan-line", {
+        drawSVG: 0,
+        duration: 1.5,
+        stagger: 0.09,
+        ease: "power2.inOut",
+        scrollTrigger: { trigger: ".drawing-board", start: "top 85%", once: true },
+      });
+      gsap.fromTo(
+        ".plan-daylight",
+        { x: -25, opacity: 0.08 },
+        {
+          x: 45,
+          opacity: 0.32,
+          ease: "none",
+          scrollTrigger: { trigger: root.current, start: "top 70%", end: "bottom 50%", scrub: 0.8 },
+        },
+      );
+    },
+    { scope: root, dependencies: [motion], revertOnUpdate: true },
   );
   return (
     <section
@@ -324,26 +477,75 @@ function Approach() {
             <span>{steps[active]?.number}</span>
             <span>/ 03</span>
           </div>
-          <svg className="plan-drawing" viewBox="0 0 340 240" fill="none" aria-hidden="true">
-            <path
-              d="M25 210V35h170v35h110v140H25Zm0-85h80m30 0h60V70m0 90v50m-90 0v-85m90 0h110M25 90h35"
-              stroke="currentColor"
-            />
-            <path
-              d="M105 125a30 30 0 0 1 30-30v30M195 160a35 35 0 0 0 35-35h-35"
-              stroke="currentColor"
-              strokeWidth="0.6"
-            />
-            <path
-              d="M35 45h50v36H35zm205 60h54v80h-54M150 47h32v50h-32"
-              stroke="currentColor"
-              strokeWidth="0.6"
-            />
-            <path d="M15 220h300M15 215v10m300-10v10" stroke="currentColor" strokeWidth="0.4" />
-            <circle cx="65" cy="174" r="19" stroke="currentColor" strokeWidth="0.6" />
-            <path d="M65 152v44m-22-22h44" stroke="currentColor" strokeWidth="0.4" />
-          </svg>
-          <p className="drawing-caption">THE START OF AN IDEA / CONCEPT SKETCH</p>
+          <div className={`drawing-board drawing-stage-${active}`}>
+            <div className="drawing-top">
+              <span>SF—01 / GROUND PLAN</span>
+              <span>N ↑</span>
+            </div>
+            <svg className="plan-drawing" viewBox="0 0 340 240" fill="none" aria-hidden="true">
+              <defs>
+                <clipPath id="room-boundary">
+                  <path d="M25 210V35h170v35h110v140Z" />
+                </clipPath>
+              </defs>
+              <g clipPath="url(#room-boundary)">
+                <path
+                  className="plan-daylight"
+                  d="M60 35H155L255 210H160Z"
+                  fill="#e5cca0"
+                  opacity="0.18"
+                />
+                <path
+                  className="plan-room"
+                  d="M195 70h110v140H195Z"
+                  fill="#c4cbb2"
+                  opacity="0.08"
+                />
+              </g>
+              <g stroke="currentColor" strokeWidth="1.15">
+                <path className="plan-line" d="M25 210V35h170v35h110v140H25Z" />
+                <path className="plan-line" d="M25 125h80" />
+                <path className="plan-line" d="M135 125h60V70" />
+                <path className="plan-line" d="M195 160v50" />
+                <path className="plan-line" d="M105 210v-85" />
+                <path className="plan-line" d="M195 125h110" />
+              </g>
+              <g stroke="currentColor" strokeWidth="0.6">
+                <path className="plan-line" d="M105 125a30 30 0 0 1 30-30v30" />
+                <path className="plan-line" d="M195 160a35 35 0 0 0 35-35h-35" />
+                <path className="plan-line" d="M35 45h50v36H35Z" />
+                <path className="plan-line" d="M240 145h54v50h-54Z" />
+                <path className="plan-line" d="M150 47h32v50h-32Z" />
+                <circle className="plan-line" cx="65" cy="174" r="19" />
+                <path className="plan-line" d="M15 225h300" />
+                <path d="M15 220v10m300-10v10" />
+              </g>
+              <g className="plan-labels" fill="currentColor">
+                <text x="47" y="112">
+                  REST
+                </text>
+                <text x="222" y="111">
+                  GATHER
+                </text>
+                <text x="46" y="207">
+                  GROW
+                </text>
+              </g>
+            </svg>
+            <div className="drawing-bottom">
+              <span>
+                {
+                  [
+                    "A place for everyday rituals",
+                    "Daylight shapes the plan",
+                    "Every detail finds its purpose",
+                  ][active]
+                }
+              </span>
+              <span>1:100</span>
+            </div>
+          </div>
+          <p className="drawing-caption">ORIGINAL CONCEPT SKETCH / NOT A CONSTRUCTION DRAWING</p>
         </div>
         <div className="process-steps">
           {steps.map((step, index) => (
@@ -480,6 +682,8 @@ function Enquiry() {
   const [show, setShow] = useState(false);
   const [priorityNotice, setPriorityNotice] = useState("");
   const errorBox = useRef<HTMLDivElement>(null);
+  const completed = [!!brief.type, !!brief.scale, !!brief.timing, brief.priorities.length > 0];
+  const completedCount = completed.filter(Boolean).length;
   function set(key: keyof Omit<Brief, "priorities">, value: string) {
     setBrief({ ...brief, [key]: value });
     setErrors([]);
@@ -526,6 +730,17 @@ function Enquiry() {
           </div>
         </div>
         <form className="brief-form" onSubmit={review} noValidate>
+          <div className="brief-progress">
+            <div>
+              <span className="eyebrow">YOUR IDEA, TAKING SHAPE</span>
+              <span role="status">{completedCount} of 4 details</span>
+            </div>
+            <div className="brief-progress-segments" aria-hidden="true">
+              {["space", "scale", "timing", "priorities"].map((key, index) => (
+                <span key={key} className={completed[index] ? "is-complete" : ""} />
+              ))}
+            </div>
+          </div>
           <ChoiceGroup
             legend="01 / WHAT ARE YOU IMAGINING?"
             name="space"
@@ -662,6 +877,7 @@ export function App() {
         Skip to content
       </a>
       <header className="site-header">
+        <span className="reading-progress" aria-hidden="true" />
         <a className="small-brand" href="#main" aria-label="Stillform home">
           <Emblem />
           <span>
@@ -764,40 +980,8 @@ export function App() {
           </div>
         </section>
         <Projects motion={motion} open={setProject} />
-        <section className="materials section-pad">
-          <div className="materials-image reveal-image">
-            <img
-              src="/images/timber.webp"
-              alt="Vertical timber fins create a rhythm of warm surfaces and deep shadow"
-              width="1400"
-              height="2096"
-              loading="lazy"
-            />
-          </div>
-          <div className="materials-copy">
-            <span className="eyebrow">IN THE DETAILS / MATERIAL NOTES</span>
-            <h2 className="line-reveal">
-              Honest materials. <br />
-              <em>Nothing to hide.</em>
-            </h2>
-            <p>
-              The grain of timber. The weight of stone. The way a surface changes as the light moves
-              across it.
-            </p>
-            <p>
-              We find richness in these quiet things. Materials chosen to be lived with, touched and
-              noticed over time.
-            </p>
-            <a className="text-link" href="#approach">
-              A closer look at our thinking <Arrow />
-            </a>
-            <span className="material-stamp">
-              MATERIAL STUDY 04 <br />
-              TEXTURE / RHYTHM / SHADOW
-            </span>
-          </div>
-        </section>
-        <Approach />
+        <Materials motion={motion} open={setProject} />
+        <Approach motion={motion} />
         <Enquiry />
         <section className="closing section-pad">
           <span className="eyebrow">GOOD PLACES. GOOD COMPANY.</span>

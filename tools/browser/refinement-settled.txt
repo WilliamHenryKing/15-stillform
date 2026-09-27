@@ -1,0 +1,13 @@
+async (page) => {
+  await page.emulateMedia({reducedMotion:'no-preference'});
+  await page.setViewportSize({width:1440,height:1000});
+  await page.goto('http://127.0.0.1:4625/'); await page.waitForTimeout(2500);
+  await page.getByRole('radio',{name:'A home',exact:true}).check();
+  await page.getByRole('radio',{name:'A complete space',exact:true}).check();
+  await page.getByRole('radio',{name:'Within a year',exact:true}).check();
+  await page.getByRole('button',{name:/Natural light/}).click();
+  await page.locator('#project').evaluate(el=>el.scrollIntoView({block:'start',behavior:'instant'}));
+  await page.waitForTimeout(1600);
+  await page.screenshot({path:'docs/visual/captures/refinement-2026-09-27/brief-progress.png'});
+  return {note:'Sampled settled form after the heading and progress transitions; the earlier in-motion sample is separately retained.',completed:await page.locator('.brief-progress [role=status]').innerText()};
+}

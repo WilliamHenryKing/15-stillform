@@ -1,13 +1,25 @@
 import { useGSAP } from "@gsap/react";
 import { gsap } from "gsap";
+import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
 import { Flip } from "gsap/Flip";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { SplitText } from "gsap/SplitText";
 import type { RefObject } from "react";
 
-gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText, Flip);
+gsap.registerPlugin(useGSAP, ScrollTrigger, SplitText, Flip, DrawSVGPlugin);
 
 export function useSiteMotion(root: RefObject<HTMLDivElement | null>, enabled: boolean) {
+  useGSAP(
+    () => {
+      const setProgress = gsap.quickSetter(".reading-progress", "scaleX");
+      ScrollTrigger.create({
+        start: 0,
+        end: "max",
+        onUpdate: (self) => setProgress(self.progress),
+      });
+    },
+    { scope: root },
+  );
   useGSAP(
     () => {
       if (!enabled) return;
@@ -61,16 +73,6 @@ export function useSiteMotion(root: RefObject<HTMLDivElement | null>, enabled: b
             transformOrigin: "left",
             ease: "none",
             scrollTrigger: { trigger: ".ethos", start: "top 70%", end: "bottom 60%", scrub: 0.7 },
-          });
-          gsap.from(".materials-image img", {
-            scale: 1.2,
-            ease: "none",
-            scrollTrigger: {
-              trigger: ".materials",
-              start: "top bottom",
-              end: "bottom top",
-              scrub: 0.8,
-            },
           });
           gsap.from(".closing-title", {
             xPercent: -8,

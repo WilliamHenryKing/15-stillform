@@ -1,0 +1,52 @@
+{
+  "date": "2026-09-27",
+  "browser": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/154.0.0.0 Safari/537.36",
+  "dpr": 1,
+  "scope": "Sampled rendered states, actual interactions and emulated viewports; no uninterrupted viewing or physical phone claim.",
+  "results": [
+    "Single accessible masthead after SplitText",
+    "Residential filter shows one study",
+    "Interiors filter shows two studies",
+    "Cultural filter shows one study",
+    "All filter restores four studies",
+    "Study opens as native modal",
+    "Detail control changes crop",
+    "Previous study wraps to last",
+    "Changing study resets detail crop",
+    "Keyboard next wraps to first",
+    "Escape closes study and restores opener focus",
+    "Scroll updates approach index",
+    "Empty brief shows four errors and focuses summary",
+    "Priority limit retains three and explains limit",
+    "Brief summary reflects choices",
+    "Project brief downloads as text file",
+    "Editing preserves all selections",
+    "Credits include all four photographers",
+    "Manual motion switch removes choreography",
+    "No horizontal overflow at 1920x1080",
+    "No horizontal overflow at 768x1024",
+    "No horizontal overflow at 390x844",
+    "No horizontal overflow at 320x740",
+    "No horizontal overflow at 844x390",
+    "Mobile menu opens",
+    "Mobile Escape returns menu focus",
+    "Mobile menu closes after navigation",
+    "Operating-system reduced motion respected",
+    "Skip link is first keyboard stop",
+    "No browser console or page errors"
+  ],
+  "errors": [],
+  "samples": {
+    "introEarly": [
+      "none",
+      "matrix(1, 0, 0, 1, 0, 126.965)",
+      "none"
+    ],
+    "introSettled": [
+      "none",
+      "matrix(1, 0, 0, 1, 0, 0)",
+      "none"
+    ]
+  },
+  "accessibility": []
+}

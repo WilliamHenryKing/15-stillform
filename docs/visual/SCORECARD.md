@@ -2,6 +2,12 @@
 
 Implementer assessment only. William explicitly requested solo sequential work; no subagent or independent acceptance is implied. Scale: 1 placeholder, 2 technical demo, 3 competent, 4 premium studio target, 5 exceptional.
 
+## Second-pass critique
+
+The material section now has a more distinctive identity and a useful interaction: three original swatch graphics control related photography and design observations. The larger plan drawing has better visual weight beside the process copy, with a grid, dimensions, labels, drawn strokes and changing light. Gallery thumbnails improve orientation and the actual zoom defect is repaired. Persistent navigation and brief progress make the long page easier to use.
+
+New desktop, full-HD and phone samples were inspected in `captures/refinement-2026-09-27/`, including the corrected, settled enquiry view. The photographic art direction remains intentionally quieter than VELA. Remaining limits: the same four photographs are reused across the studies; landscape phones show only part of the tall hero; the drawing is a concept graphic rather than technical architecture; the form still needs several screens on a narrow phone. There is no basis for an independently certified 10/10 score. The table below retains the historical first-pass self-assessment.
+
 First-render hero baselines are retained. Final review captures cover the complete journey. The concrete visual revision gives the project numbers a paper backing so they remain legible over white sky. Full-HD's first capture sampled the intro; `hero-1920x1080-settled.png` is the resolved composition.
 
 | View | Three remaining design limitations | Composition / type / UI |

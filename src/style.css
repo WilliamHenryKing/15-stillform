@@ -118,8 +118,11 @@ svg {
   align-items: center;
   justify-content: space-between;
   gap: 40px;
-  position: relative;
+  position: sticky;
+  top: 0;
   z-index: 10;
+  background: #edeae3f5;
+  backdrop-filter: blur(12px);
 }
 .small-brand {
   display: flex;
@@ -991,14 +994,18 @@ dialog::backdrop {
   background: #a69c87;
   min-height: 650px;
 }
-.study-photo > img {
+.study-photo-reveal {
+  position: absolute;
+  inset: 0;
+}
+.study-photo-reveal > img {
   height: 100%;
   width: 100%;
   position: absolute;
   object-fit: cover;
   transition: transform 1s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
-.study-photo.detail-view > img {
+.study-photo.detail-view img {
   transform: scale(1.6);
 }
 .detail-toggle {
@@ -2106,5 +2113,452 @@ dialog::backdrop {
     transition-duration: 0s !important;
     /* biome-ignore lint/complexity/noImportantStyles: OS accessibility preference overrides authored scrolling. */
     scroll-behavior: auto !important;
+  }
+}
+
+/* The second pass: an architectural material index and a drawn design process. */
+.reading-progress {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #8d5e49;
+  transform: scaleX(0);
+  transform-origin: left;
+}
+section[id],
+.site :is(a, button, input):focus-visible {
+  scroll-margin-top: 125px;
+}
+.materials {
+  gap: 9%;
+  grid-template-columns: 1fr 1fr;
+}
+.materials-image {
+  height: 610px;
+  background: #544435;
+}
+.material-photo-layer {
+  height: 100%;
+}
+.materials-image::after {
+  content: "";
+  position: absolute;
+  inset: 50% 0 0;
+  background: linear-gradient(transparent, #161a1599);
+  pointer-events: none;
+}
+.material-ruler {
+  position: absolute;
+  top: 24px;
+  bottom: 24px;
+  left: 20px;
+  width: 7px;
+  background: repeating-linear-gradient(to bottom, #fff9ed90 0 1px, transparent 1px 14px);
+  z-index: 1;
+}
+.material-number {
+  position: absolute;
+  right: 27px;
+  bottom: 15px;
+  z-index: 1;
+  color: #fff9ed;
+  font:
+    italic 130px / 1 Georgia,
+    serif;
+  letter-spacing: -0.07em;
+}
+.material-image-label {
+  position: absolute;
+  bottom: 30px;
+  left: 44px;
+  color: #fff9ed;
+  font-size: 9px;
+  letter-spacing: 0.12em;
+  z-index: 1;
+}
+.material-photo-caption {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  padding-top: 16px;
+  font-size: 10px;
+}
+.material-photo-caption > span:last-child {
+  font-size: 8px;
+  letter-spacing: 0.08em;
+}
+.materials-copy h2 {
+  font-size: clamp(38px, 4vw, 77px);
+}
+.material-choices {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-top: 30px;
+}
+.material-choices button {
+  position: relative;
+  text-align: left;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid #292a2533;
+  padding: 0 0 17px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: baseline;
+  gap: 14px 5px;
+  font-size: 12px;
+}
+.material-choices button::after {
+  content: "";
+  position: absolute;
+  height: 2px;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  background: #8d5e49;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s;
+}
+.material-choices button[aria-pressed="true"]::after,
+.material-choices button:hover::after {
+  transform: scaleX(1);
+}
+.material-choice-index {
+  font:
+    italic 12px Georgia,
+    serif;
+  color: #686457;
+}
+.material-swatch {
+  width: 100%;
+  height: 55px;
+  display: block;
+  grid-column: 1 / -1;
+}
+.swatch-0 {
+  background: repeating-linear-gradient(92deg, #5c4030 0 5px, #9a7558 6px 9px, #6e4e38 10px 16px);
+}
+.swatch-1 {
+  background: linear-gradient(
+    125deg,
+    #aaa895 0 21%,
+    #e3d8ba 21% 39%,
+    #a7a796 39% 47%,
+    #eadcbb 47% 68%,
+    #aaa895 68% 76%,
+    #eadcbb 76%
+  );
+}
+.swatch-2 {
+  background: repeating-radial-gradient(
+    ellipse at 50% 115%,
+    #ad8160 0 6px,
+    #76533d 7px 12px,
+    #cab094 13px 16px
+  );
+}
+.material-note {
+  min-height: 136px;
+  padding-top: 24px;
+}
+.material-note h3 {
+  font:
+    italic 25px / 1.25 Georgia,
+    serif;
+  margin-bottom: 12px;
+}
+.material-note p {
+  font-size: 12px;
+  line-height: 1.9;
+  color: #5f6056;
+  max-width: 420px;
+}
+.materials-copy .text-link {
+  margin-top: 12px;
+}
+.material-stamp {
+  margin-top: 30px;
+}
+.approach-sticky {
+  top: 127px;
+}
+.drawing-board {
+  max-width: 395px;
+  margin: 22px 0 15px;
+  border: 1px solid #c7cbbe40;
+  background:
+    repeating-linear-gradient(0deg, transparent 0 21px, #c7cbbe07 21px 22px),
+    repeating-linear-gradient(90deg, transparent 0 21px, #c7cbbe07 21px 22px);
+  padding: 15px 17px 13px;
+}
+.drawing-top,
+.drawing-bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  font-size: 7px;
+  letter-spacing: 0.07em;
+  color: #c7cbbe;
+}
+.drawing-top > span:last-child {
+  font-size: 11px;
+}
+.drawing-board .plan-drawing {
+  width: 100%;
+  height: auto;
+  margin: 3px 0;
+  color: #bcc7ab;
+}
+.plan-labels {
+  font-size: 7px;
+  letter-spacing: 1px;
+}
+.plan-room {
+  transition: opacity 0.8s;
+}
+.drawing-stage-2 .plan-room {
+  opacity: 0.23;
+}
+.drawing-bottom {
+  line-height: 1.7;
+  letter-spacing: 0;
+}
+.drawing-caption {
+  font-size: 6px;
+}
+.study-thumbnails {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 9px;
+  margin-top: 22px;
+}
+.study-thumbnails button {
+  padding: 0;
+  background: #292a25;
+  border: 0;
+  position: relative;
+  overflow: hidden;
+  outline: 1px solid transparent;
+  outline-offset: 3px;
+}
+.study-thumbnails img {
+  width: 100%;
+  height: 58px;
+  opacity: 0.55;
+  transition:
+    opacity 0.3s,
+    transform 0.5s;
+}
+.study-thumbnails button[aria-pressed="true"] {
+  outline-color: #8d5e49;
+}
+.study-thumbnails button[aria-pressed="true"] img,
+.study-thumbnails button:hover img {
+  opacity: 1;
+  transform: scale(1.07);
+}
+.study-thumbnails button:focus-visible {
+  outline: 2px solid #8d5e49;
+}
+.study-thumbnails button span {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  color: #fff9ed;
+  background: #292a25;
+  font-size: 8px;
+  padding: 4px 6px;
+}
+.brief-progress {
+  padding-bottom: 30px;
+}
+.brief-progress > div:first-child {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  align-items: baseline;
+  font-size: 10px;
+}
+.brief-progress .eyebrow {
+  font-size: 8px;
+}
+.brief-progress-segments {
+  display: flex;
+  gap: 5px;
+  margin-top: 14px;
+}
+.brief-progress-segments > span {
+  flex: 1;
+  height: 3px;
+  background: #292a2520;
+  position: relative;
+}
+.brief-progress-segments > span::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: #8d5e49;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s;
+}
+.brief-progress-segments > .is-complete::after {
+  transform: scaleX(1);
+}
+@media (min-width: 1700px) {
+  .materials-image {
+    height: 720px;
+  }
+  .material-note p {
+    font-size: 14px;
+  }
+  .material-note h3 {
+    font-size: 30px;
+  }
+}
+@media (max-width: 1100px) {
+  .materials {
+    gap: 7%;
+  }
+  .materials-image {
+    height: 600px;
+  }
+  .material-choices {
+    gap: 12px;
+  }
+  .material-note {
+    min-height: 155px;
+  }
+}
+@media (max-width: 800px) {
+  .materials-image {
+    height: 580px;
+  }
+  .material-number {
+    font-size: 95px;
+  }
+  .material-image-label {
+    font-size: 7px;
+    left: 35px;
+    bottom: 22px;
+  }
+  .material-ruler {
+    left: 15px;
+  }
+  .material-choices {
+    gap: 9px;
+  }
+  .material-swatch {
+    height: 40px;
+  }
+  .material-note {
+    min-height: 175px;
+  }
+  .material-note h3 {
+    font-size: 23px;
+  }
+  .material-photo-caption {
+    font-size: 9px;
+    flex-wrap: wrap;
+  }
+  .drawing-board {
+    padding: 12px;
+  }
+  .drawing-bottom {
+    font-size: 6px;
+  }
+  .approach-sticky {
+    top: 113px;
+  }
+}
+@media (max-width: 540px) {
+  section[id],
+  .site :is(a, button, input):focus-visible {
+    scroll-margin-top: 100px;
+  }
+  .materials {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .materials-image {
+    height: 380px;
+  }
+  .materials-copy h2 {
+    font-size: 40px;
+  }
+  .material-choices {
+    gap: 15px;
+    margin-top: 25px;
+  }
+  .material-swatch {
+    height: 56px;
+  }
+  .material-note {
+    min-height: 150px;
+  }
+  .material-note h3 {
+    font-size: 26px;
+  }
+  .material-note p {
+    font-size: 13px;
+  }
+  .material-photo-caption {
+    font-size: 10px;
+  }
+  .material-photo-caption > span:last-child {
+    font-size: 7px;
+  }
+  .approach-sticky {
+    top: auto;
+  }
+  .approach .process-index {
+    position: static;
+    margin-top: 20px;
+  }
+  .process-index > span:first-child {
+    font-size: 68px;
+  }
+  .drawing-board {
+    width: 100%;
+    max-width: none;
+    margin-top: 20px;
+  }
+  .drawing-board .plan-drawing {
+    width: 100%;
+    height: auto;
+  }
+  .drawing-bottom {
+    font-size: 8px;
+  }
+  .drawing-caption {
+    font-size: 6px;
+    line-height: 1.6;
+  }
+  .study-thumbnails img {
+    height: 54px;
+  }
+  .brief-progress {
+    padding-bottom: 25px;
+  }
+}
+@media (max-width: 359px) {
+  .materials-image {
+    height: 320px;
+  }
+  .materials-copy h2 {
+    font-size: 35px;
+  }
+  .material-choices {
+    gap: 10px;
+  }
+  .material-note {
+    min-height: 170px;
+  }
+  .material-note h3 {
+    font-size: 24px;
   }
 }

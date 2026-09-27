@@ -1,0 +1,46 @@
+{
+  "date": "2026-09-27",
+  "desktop": [],
+  "study": [],
+  "brief": [],
+  "credits": [],
+  "imageState": [
+    {
+      "src": "http://127.0.0.1:4625/images/stair-wide.webp",
+      "complete": true,
+      "naturalWidth": 1353
+    },
+    {
+      "src": "http://127.0.0.1:4625/images/courtyard.webp",
+      "complete": true,
+      "naturalWidth": 1920
+    },
+    {
+      "src": "http://127.0.0.1:4625/images/stair.webp",
+      "complete": true,
+      "naturalWidth": 1400
+    },
+    {
+      "src": "http://127.0.0.1:4625/images/gallery.webp",
+      "complete": true,
+      "naturalWidth": 1600
+    },
+    {
+      "src": "http://127.0.0.1:4625/images/timber.webp",
+      "complete": true,
+      "naturalWidth": 1400
+    },
+    {
+      "src": "http://127.0.0.1:4625/images/timber.webp",
+      "complete": true,
+      "naturalWidth": 1400
+    }
+  ],
+  "noJavascript": {
+    "status": 200,
+    "heading": "STILLFORM",
+    "projectCount": 4,
+    "bodyText": 3664
+  },
+  "notes": "Automated checks of representative states; no full accessibility or device-performance certification."
+}

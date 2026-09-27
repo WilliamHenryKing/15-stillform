@@ -1,22 +1,20 @@
 {
   "date": "2026-09-27",
-  "pass": "second refinement",
-  "runtime": "DOM/CSS/SVG",
   "files": [
     {
       "path": "dist/.vite/manifest.json",
       "bytes": 185,
-      "sha256": "27275ca2782b9553888ee8ed830b100ad3b56483db769d4caa0eab8fe2dfd4e2"
+      "sha256": "81a5a8108cb75ba6ebe79e0e5a57026222f291e5b43e166c52d8b51667041ba5"
     },
     {
-      "path": "dist/assets/index-DJKROVx9.js",
-      "bytes": 403173,
-      "sha256": "cf36d7d64389dcfa22cb450a5563324cac9891561a0007cd20f4cea298513dca"
+      "path": "dist/assets/index-DH40GxJI.js",
+      "bytes": 394077,
+      "sha256": "f46629f7eb2031f4d3bcb49c2e4cb81b949ab7805f44e7760be16f1d910e008b"
     },
     {
-      "path": "dist/assets/index-l6PfbWSh.css",
-      "bytes": 39473,
-      "sha256": "bb9676a2b1fbdbaf0055228972f2fc775146c7eea08b17ee2660cc2065455c02"
+      "path": "dist/assets/index-DSiSGU8z.css",
+      "bytes": 33199,
+      "sha256": "4f8e07051fe1b7e8b98a2e783e4eddbc54b60f3bc848dabf6312228860f4c0e9"
     },
     {
       "path": "dist/favicon.svg",
@@ -50,8 +48,9 @@
     },
     {
       "path": "dist/index.html",
-      "bytes": 19047,
-      "sha256": "a5eb4733f8230cec96fff6dea9025a369bec20f0d7eb9df7a99c29b6d503f05c"
+      "bytes": 16396,
+      "sha256": "5c11803776193e1c9d50769998588a02139d6eb3c2db1b5b477c7a3c07dbf892"
     }
-  ]
+  ],
+  "totalBytes": null
 }

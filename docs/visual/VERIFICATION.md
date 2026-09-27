@@ -2,6 +2,16 @@
 
 Local implementation and solo review complete. No deployment, independent approval or user acceptance is claimed. VELA was completed before STILLFORM creative production began.
 
+## Second refinement pass
+
+The material section is now a three-part interactive texture/light/form study, with illustrated swatches, moving image apertures, live descriptive copy and links to the matching gallery project. A new original drawing board uses DrawSVG for the architectural plan and scroll-linked daylight. A persistent navigation header and reading rule support the long page. The gallery adds thumbnail navigation, a more considered image/text entrance and automatic return to the new photograph on phone screens. The enquiry form reports completion of its four details.
+
+New evidence is in `captures/refinement-2026-09-27/`: 30 passing regression assertions, 16 new-interaction assertions and four final zoom/gallery assertions. Zero browser errors; final axe scans are clear for the mobile page and desktop/study/brief/credits states. Five domain tests and 21 assertions remain passing; strict TypeScript, Biome and production/prerender builds pass. No-JavaScript content returns HTTP 200. All observed page images load locally.
+
+The deep pass found a real gallery defect that the older class-name assertion missed: the entrance tween's transform overrode the CSS detail zoom. An outer reveal layer now owns the entrance transform, and the inner image owns the crop. `zoom-before.json` records an actual scale ratio of 1.0; `zoom-after.json` confirms 1.6 in both animated desktop and reduced-motion phone checks. It also confirms reset on study change and phone gallery scrolling. The original form-progress screenshot sampled unfinished heading/colour transitions; it is retained as `brief-progress-in-motion.png`. The settled sample and timing note are separate.
+
+Current code is approximately 403 kB JavaScript / 39 kB CSS raw, 137 / 9 kB gzip. Photography is unchanged at 2,198,024 bytes. Exact emitted files and hashes are in the current build receipt; the first receipt is preserved alongside the original review captures. The first-pass figures below are historical.
+
 ## Evidence
 
 `captures/baseline/` contains the first desktop and portrait opening renders. `captures/review-2026-09-27/` contains the final hero, ethos, work, filtered studies, detail dialog, materials, approach, enquiry, brief and closing states. `meta.json` records the 30 successful browser assertions and sampled intro transforms. `final-check.json` records the remaining accessibility scans, successful image loads and no-JavaScript response. `settled-wide.json` describes the corrected full-HD settling condition. `build-receipt.json` lists emitted bytes and SHA256 hashes.

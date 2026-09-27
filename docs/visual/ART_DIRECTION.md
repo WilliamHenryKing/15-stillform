@@ -8,6 +8,8 @@ Project sequence: large left-hand residential image, narrower offset right-hand 
 
 Process: dark ground and sticky large numerals; a simple original line drawing relates to the section's concern. Final enquiry returns to warm paper. Footer title resolves the masthead scale.
 
+Second pass: material exploration becomes a three-part editorial index with original CSS swatches, numbered photographic plates and changing commentary. The process drawing gains a measured grid, room labels and a moving daylight plane, with individual strokes animated using DrawSVG. Keep the quiet photographic hierarchy; the new animation supports the architecture rather than adding decorative spectacle. A thin clay reading rule and persistent paper navigation frame the page. The same licensed photographs are reused; no new photographic asset or licence is introduced.
+
 Inspected photographic references and shipped sources (all verified free Unsplash licence):
 
 - Jorgen Hendriksen — https://unsplash.com/photos/a-wooden-spiral-staircase-with-a-skylight-in-the-background-hCBjuXFjMIM
