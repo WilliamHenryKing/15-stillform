@@ -1,5 +1,7 @@
 # STILLFORM
 
+Free Cloudflare hosting preparation and commands: [CLOUDFLARE.md](CLOUDFLARE.md). The local release package is prepared separately from publication.
+
 Project 15: an architecture and interiors portfolio concept, completed locally on 27 September 2026. Monumental typography, licensed architectural photography, GSAP text and image reveals, native scrolling and a useful project-brief journey. No Three.js.
 
 ## Run

@@ -7,3 +7,5 @@ output/
 *.log
 *.tsbuildinfo
 assets-src/
+.wrangler/
+.dev.vars*

@@ -1,0 +1,17 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "15-stillform",
+  "compatibility_date": "2026-09-27",
+  "workers_dev": true,
+  "preview_urls": false,
+  "send_metrics": false,
+  "assets": {
+    "directory": "./output/cloudflare/site",
+    "not_found_handling": "none"
+  },
+  "dev": {
+    "ip": "127.0.0.1",
+    "port": 4725,
+    "inspector_port": 9325
+  }
+}

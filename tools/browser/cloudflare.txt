@@ -1,0 +1,53 @@
+async (page) => {
+  const base = "http://127.0.0.1:4725";
+  const checks = [];
+  const errors = [];
+  const assert = (ok, name) => { if (!ok) throw new Error(name); checks.push(name); };
+  page.setDefaultTimeout(7000);
+  page.on("pageerror", error => errors.push(error.message));
+  page.on("console", message => { if (message.type() === "error") errors.push(message.text()); });
+  await page.emulateMedia({reducedMotion: "no-preference"});
+  await page.setViewportSize({width: 1440, height: 1000});
+  const response = await page.goto(base);
+  assert(response.status() === 200, "Cloudflare homepage returns 200");
+  assert((await response.text()).includes("STILLFORM"), "Prerendered content is delivered");
+  assert(response.headers()["cache-control"].includes("must-revalidate"), "Homepage revalidates");
+  assert(response.headers()["x-content-type-options"] === "nosniff", "Content type header is applied");
+  const paths = await page.locator('script[src], link[rel="stylesheet"]').evaluateAll(elements => elements.map(el => el.getAttribute("src") || el.getAttribute("href")));
+  for (const path of paths) {
+    const asset = await page.request.get(base + path);
+    assert(asset.status() === 200, `Asset loads: ${path}`);
+    assert(asset.headers()["cache-control"].includes("immutable"), `Hashed asset caching: ${path}`);
+  }
+  for (const path of ["/not-a-page", "/assets/missing.js", "/.vite/manifest.json", "/src/App.tsx", "/_headers"]) {
+    const missing = await page.request.get(base + path, {headers: {accept: "text/html"}});
+    assert(missing.status() === 404, `Real 404: ${path}`);
+  }
+  const photos = ["stair.webp", "stair-wide.webp", "courtyard.webp", "gallery.webp", "timber.webp"];
+  const photoResults = [];
+  for (const file of photos) {
+    const photo = await page.request.get(`${base}/images/${file}`);
+    photoResults.push(photo.status() === 200 && photo.headers()["content-type"].includes("image/webp") && (await photo.body()).length > 10000);
+  }
+  assert(photoResults.every(Boolean), "All five local photographs return image bytes");
+  await page.waitForTimeout(1800);
+  await page.screenshot({path: "output/playwright/cloudflare-desktop.png"});
+  await page.getByRole("button", {name: "View A slower summer", exact: true}).click();
+  assert(await page.locator(".study-dialog").evaluate(el => el.open), "Study gallery hydrates and opens");
+  await page.getByRole("button", {name: "Look closer +", exact: true}).click();
+  assert(await page.locator(".study-photo").evaluate(el => el.classList.contains("detail-view")), "Gallery zoom responds");
+  await page.keyboard.press("ArrowRight");
+  assert((await page.locator("#study-title").innerText()) !== "A slower summer", "Keyboard gallery navigation works");
+  await page.keyboard.press("Escape");
+  assert(await page.locator("dialog").count() === 0, "Dialog closes by keyboard");
+  await page.emulateMedia({reducedMotion: "reduce"});
+  await page.setViewportSize({width: 390, height: 844});
+  await page.goto(`${base}/#work`);
+  await page.waitForTimeout(800);
+  assert(await page.locator(".site").evaluate(el => el.classList.contains("motion-off")), "Reduced motion is respected");
+  assert(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), "Mobile has no horizontal overflow");
+  assert(page.url().endsWith("#work"), "Fragment reload is preserved");
+  await page.screenshot({path: "output/playwright/cloudflare-mobile.png"});
+  assert(errors.length === 0, `No browser errors: ${errors.join("; ")}`);
+  return {base, checks, errors};
+}
