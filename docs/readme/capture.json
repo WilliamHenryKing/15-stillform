@@ -1,0 +1,38 @@
+{
+  "slug": "15-stillform",
+  "sourceCommit": "3285774901bdd11e654dfcefa630a8a8dc769c51",
+  "url": "https://15-stillform.williamking.workers.dev",
+  "capturedAt": "2026-10-01T06:23:33.775Z",
+  "gpu": null,
+  "errors": [],
+  "desktop": {
+    "width": 1440,
+    "height": 900
+  },
+  "phone": {
+    "width": 390,
+    "height": 844
+  },
+  "frames": 48,
+  "browser": "154.0.8037.58",
+  "assets": [
+    "/assets/index-DJKROVx9.js"
+  ],
+  "matchesLocalBuild": true,
+  "phoneOverflow": false,
+  "gifBytes": 1971456,
+  "description": "The current STILLFORM opening scrolling into its architectural studies",
+  "phoneIsEmulated": true,
+  "loop": {
+    "frames": 48,
+    "delayCentiseconds": 16,
+    "width": 720,
+    "disposal": "None"
+  },
+  "media": [
+    "preview.gif",
+    "desktop.jpg",
+    "detail.jpg",
+    "phone.jpg"
+  ]
+}
